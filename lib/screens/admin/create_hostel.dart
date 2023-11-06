@@ -30,6 +30,9 @@ class CreateHostel extends StatelessWidget {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Hostel Ease'),
+      ),
         body: Column(
       children: [
         const Spacer(),

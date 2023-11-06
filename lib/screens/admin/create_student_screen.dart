@@ -25,11 +25,11 @@ class _CreateStudentState extends State<CreateStudent> {
         department.text.isNotEmpty &&
         password.text.isNotEmpty) {
       String result = await DBmethods().createStudent(
-          studentName: studentName.text,
-          studentEmail: studentMail.text,
-          studentDepartment: department.text,
-          password: password.text,
-         );
+        studentName: studentName.text,
+        studentEmail: studentMail.text,
+        studentDepartment: department.text,
+        password: password.text,
+      );
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(result),
       ));
@@ -52,57 +52,60 @@ class _CreateStudentState extends State<CreateStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text('Hostel Ease'),
+        ),
         body: SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 85,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 85,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(hint: 'Student Name', controller: studentName),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(hint: 'Student Mail', controller: studentMail),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(hint: 'Department', controller: department),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(
+                  hint: 'Password',
+                  controller: password,
+                  isPassword: true,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    create();
+                  },
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.blue[900])),
+                  child: const Text(
+                    'Create Student',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  )),
+            ],
           ),
-          
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(hint: 'Student Name', controller: studentName),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(hint: 'Student Mail', controller: studentMail),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(hint: 'Department', controller: department),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(
-              hint: 'Password',
-              controller: password,
-              isPassword: true,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                create();
-              },
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue[900])),
-              child: const Text(
-                'Create Student',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              )),
-        ],
-      ),
-    ));
+        ));
   }
 }

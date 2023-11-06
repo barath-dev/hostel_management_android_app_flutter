@@ -35,6 +35,18 @@ class _ViewLeavePassState extends State<ViewLeavePass> {
 
   @override
   Widget build(BuildContext context) {
+    Color color;
+    Color choose(String status) {
+      if (status == 'accepted') {
+        color = Colors.green;
+      } else if (status == 'rejected') {
+        color = Colors.red;
+      } else {
+        color = Colors.yellow;
+      }
+      return color;
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Leave Pass'),
@@ -53,7 +65,7 @@ class _ViewLeavePassState extends State<ViewLeavePass> {
                               horizontal: 20, vertical: 10),
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.blue[900],
+                                color: choose(snapshot.data['status']),
                                 borderRadius: BorderRadius.circular(20)),
                             child: ListTile(
                               title: Text(

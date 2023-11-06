@@ -30,6 +30,9 @@ class _AdminmenuState extends State<Adminmenu> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Hostel Ease'),
+      ),
         body: Container(
       decoration: const BoxDecoration(
           image: DecorationImage(

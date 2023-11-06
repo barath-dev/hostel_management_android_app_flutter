@@ -41,10 +41,10 @@ class _BookRoomScreenState extends State<BookRoomScreen> {
                                     "${"Hostel Name: " + snapshot.data!.docs[index]['name']}\n",
                                     style: const TextStyle(color: Colors.white),
                                   ),
-                                  subtitle: Text(
-                                    "${"Warden:" + snapshot.data!.docs[index]['warden name']}\n",
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
+                                  // subtitle: Text(
+                                  //   "${"Warden:" + snapshot.data!.docs[index]['warden name']}\n",
+                                  //   style: const TextStyle(color: Colors.white),
+                                  // ),
                                   trailing: TextButton(
                                     onPressed: () {
                                       Navigator.push(

@@ -6,6 +6,7 @@ import 'package:hostel_ease/screens/admin/create_hostel.dart';
 import 'package:hostel_ease/screens/common/choose_role.dart';
 import 'package:hostel_ease/screens/student/applyLeave_pass.dart';
 import 'package:hostel_ease/screens/student/book_Room.dart';
+import 'package:hostel_ease/screens/student/my_queries.dart';
 import 'package:hostel_ease/screens/student/query_screen.dart';
 import 'package:hostel_ease/screens/student/viewLeacePass.dart';
 import 'package:hostel_ease/screens/warden/query_screen.dart';
@@ -39,67 +40,76 @@ class _StudentmenuState extends State<Studentmenu> {
     }
 
     return Scaffold(
+        appBar: AppBar(
+          title: const Text('Hostel Ease'),
+        ),
         body: Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(
-                'assets/images/img.jpeg',
-              ))),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ListView.builder(
-              shrinkWrap: true,
-              itemCount: list.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue[900],
-                        borderRadius: BorderRadius.circular(20)),
-                    child: ListTile(
-                      title: Center(
-                          child: Text(
-                        list[index],
-                        style: const TextStyle(color: Colors.white),
-                      )),
-                      onTap: () {
-                        if (index == 0) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const BookRoomScreen()));
-                        } else if (index == 1) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const QuesryScreenStudent()));
-                        } else if (index == 2) {
-                        } else if (index == 3) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ApplyLeave()));
-                        } else if (index == 4) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ViewLeavePass()));
-                        } else if (index == 5) {
-                          logout();
-                        }
-                      },
-                    ),
-                  ),
-                );
-              }),
-        ],
-      ),
-    ));
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                    'assets/images/img.jpeg',
+                  ))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue[900],
+                            borderRadius: BorderRadius.circular(20)),
+                        child: ListTile(
+                          title: Center(
+                              child: Text(
+                            list[index],
+                            style: const TextStyle(color: Colors.white),
+                          )),
+                          onTap: () {
+                            if (index == 0) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const BookRoomScreen()));
+                            } else if (index == 1) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const QuesryScreenStudent()));
+                            } else if (index == 2) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const MyQueries()));
+                            } else if (index == 3) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ApplyLeave()));
+                            } else if (index == 4) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ViewLeavePass()));
+                            } else if (index == 5) {
+                              logout();
+                            }
+                          },
+                        ),
+                      ),
+                    );
+                  }),
+            ],
+          ),
+        ));
   }
 }

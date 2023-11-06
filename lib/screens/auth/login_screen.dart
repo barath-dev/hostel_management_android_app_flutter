@@ -49,102 +49,106 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text('Hostel Ease'),
+        ),
         body: Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/images/img.jpeg'), fit: BoxFit.cover)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Flexible(
-            flex: 20,
-            child: Container(),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 24),
-            child: Text(
-              'Login',
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 54, fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(hint: 'email address', controller: email),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(
-              hint: 'Password',
-              controller: password,
-              isPassword: true,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 90),
-            child: InkWell(
-              onTap: () => login(),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                ),
-                decoration: BoxDecoration(
-                    color: Colors.blue[900],
-                    borderRadius: BorderRadius.circular(20)),
-                child: const Center(
-                    child: Text(
-                  'Login',
-                  style: TextStyle(color: Colors.white),
-                )),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 32,
-          ),
-          Row(
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/images/img.jpeg'),
+                  fit: BoxFit.cover)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const ChooseRole(isLogin: true)));
-                },
-                // ignore: prefer_const_constructors
+              Flexible(
+                flex: 20,
+                child: Container(),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 24),
                 child: Text(
-                  "Choose your role",
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.white,
-                      fontSize: 25),
+                  'Login',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 54, fontWeight: FontWeight.bold),
                 ),
               ),
+              const SizedBox(
+                height: 40,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(hint: 'email address', controller: email),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(
+                  hint: 'Password',
+                  controller: password,
+                  isPassword: true,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 90),
+                child: InkWell(
+                  onTap: () => login(),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                    ),
+                    decoration: BoxDecoration(
+                        color: Colors.blue[900],
+                        borderRadius: BorderRadius.circular(20)),
+                    child: const Center(
+                        child: Text(
+                      'Login',
+                      style: TextStyle(color: Colors.white),
+                    )),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 32,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const ChooseRole(isLogin: true)));
+                    },
+                    // ignore: prefer_const_constructors
+                    child: Text(
+                      "Choose your role",
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.white,
+                          fontSize: 25),
+                    ),
+                  ),
+                ],
+              ),
+              Flexible(
+                flex: 24,
+                child: Container(),
+              )
             ],
           ),
-          Flexible(
-            flex: 24,
-            child: Container(),
-          )
-        ],
-      ),
-    ));
+        ));
   }
 }

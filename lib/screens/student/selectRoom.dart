@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_build_context_synchronously
+// ignore_for_file: file_names, use_build_context_synchronously, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -69,6 +69,14 @@ class _ChooseRoomState extends State<ChooseRoom> {
                       text: name,
                       style: const TextStyle(color: Colors.blue, fontSize: 20),
                     ),
+                    const TextSpan(
+                      text: '\nPayment:',
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    ),
+                    TextSpan(
+                      text: 'Rs. 5000',
+                      style: const TextStyle(color: Colors.blue, fontSize: 20),
+                    ),
                   ],
                 )),
                 onPressed: () async {},
@@ -102,7 +110,7 @@ class _ChooseRoomState extends State<ChooseRoom> {
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            'Confirm',
+                            'Pay & Confirm',
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
@@ -110,7 +118,7 @@ class _ChooseRoomState extends State<ChooseRoom> {
                       onPressed: () async {
                         await bookRoom();
                         ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Room Booked')));
+                            const SnackBar(content: Text('Payment successful and Room Booked')));
                         Navigator.of(context).pop();
                         Navigator.push(
                             context,
@@ -149,38 +157,40 @@ class _ChooseRoomState extends State<ChooseRoom> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('Choose Room')),
-        body: Column(
-          children: [
-            widget.rooms.isNotEmpty
-                ? ListView.builder(
-                    itemCount: widget.rooms.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: const Text('Room No:'),
-                        subtitle: Text(widget.rooms[index]),
-                        trailing: Text('Floor:${widget.rooms[index][0]}'),
-                        onTap: () {
-                          _confirmBook(widget.rooms[index],
-                              widget.rooms[index][0], widget.name);
-                        },
-                      );
-                    },
-                  )
-                : Padding(
-                    padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 2-100),
-                    child: const Center(
-                      child: Text(
-                        'No Rooms Available',
-                        style: TextStyle(
-                            fontSize: 32,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              widget.rooms.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: widget.rooms.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: const Text('Room No:'),
+                          subtitle: Text(widget.rooms[index]),
+                          trailing: Text('Floor:${widget.rooms[index][0]}'),
+                          onTap: () {
+                            _confirmBook(widget.rooms[index],
+                                widget.rooms[index][0], widget.name);
+                          },
+                        );
+                      },
+                    )
+                  : Padding(
+                      padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 2 - 100),
+                      child: const Center(
+                        child: Text(
+                          'No Rooms Available',
+                          style: TextStyle(
+                              fontSize: 32,
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                  ),
-          ],
+            ],
+          ),
         ));
   }
 }

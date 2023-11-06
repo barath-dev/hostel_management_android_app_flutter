@@ -57,68 +57,72 @@ class _CreateWardenState extends State<CreateWarden> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text('Hostel Ease'),
+        ),
         body: SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 85,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 85,
+              ),
+              Text(
+                'Create Warden account \n Hostel Name:${widget.HostelName} \n Hostel ID:${widget.HostelId}',
+                // ignore: prefer_const_constructors
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(hint: 'Warden Name', controller: wardenName),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(hint: 'Warden Mail', controller: wardenMail),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(
+                  hint: 'Age',
+                  controller: age,
+                  keybordType: TextInputType.number,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextInput(
+                  hint: 'Password',
+                  controller: password,
+                  isPassword: true,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    create();
+                  },
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.blue[900])),
+                  child: const Text(
+                    'Create Warden',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  )),
+            ],
           ),
-          Text(
-            'Create Warden account \n Hostel Name:${widget.HostelName} \n Hostel ID:${widget.HostelId}',
-            // ignore: prefer_const_constructors
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(hint: 'Warden Name', controller: wardenName),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(hint: 'Warden Mail', controller: wardenMail),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(
-              hint: 'Age',
-              controller: age,
-              keybordType: TextInputType.number,
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextInput(
-              hint: 'Password',
-              controller: password,
-              isPassword: true,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                create();
-              },
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue[900])),
-              child: const Text(
-                'Create Warden',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              )),
-        ],
-      ),
-    ));
+        ));
   }
 }
