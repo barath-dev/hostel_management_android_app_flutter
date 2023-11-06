@@ -13,7 +13,7 @@ class DBmethods {
     var list = [];
     for (int i = 1; i <= int.parse(numberOfFloors); i++) {
       for (int j = 1; j <= 10; j++) {
-        list.add(i.toString() +'0'+ j.toString());
+        list.add(i.toString() + '0' + j.toString());
       }
     }
     try {
@@ -90,7 +90,7 @@ class DBmethods {
       });
       FirebaseFirestore.instance.collection('hostels').doc(hId).update({
         'warden count': FieldValue.increment(1),
-        'warden name': WardensName,
+        'warden name': FieldValue.arrayUnion([WardensName]),
       });
     } catch (e) {
       return e.toString();
@@ -188,6 +188,23 @@ class DBmethods {
       String hid = '';
       await FirebaseFirestore.instance
           .collection('students')
+          .doc(uid)
+          .get()
+          .then((value) {
+        hid = value['hid'];
+      });
+      return hid;
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<String> getWardenHid() async {
+    try {
+      String uid = FirebaseAuth.instance.currentUser!.uid;
+      String hid = '';
+      await FirebaseFirestore.instance
+          .collection('hostels')
           .doc(uid)
           .get()
           .then((value) {

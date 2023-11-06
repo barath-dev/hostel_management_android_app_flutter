@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print, unnecessary_const
 
 import 'package:flutter/material.dart';
-import 'package:hostel_ease/screens/admin/create_warden.dart';
 import 'package:hostel_ease/screens/auth/login_screen.dart';
 
 class ChooseRole extends StatelessWidget {

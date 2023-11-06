@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hostel_ease/screens/common/choose_role.dart';
+import 'package:hostel_ease/screens/warden/leavePass_list.dart';
+import 'package:hostel_ease/screens/warden/query_list.dart';
 import 'package:hostel_ease/screens/warden/query_screen.dart';
 
 class WardenMenu extends StatefulWidget {
@@ -61,11 +63,16 @@ class _WardenMenuState extends State<WardenMenu> {
                       )),
                       onTap: () {
                         if (index == 0) {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const QueryScreen()));
+                                  builder: (context) => const LeavePassList()));
                         } else if (index == 1) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const QueryList()));
+                        } else if (index == 2) {
                           logout();
                         }
                       },

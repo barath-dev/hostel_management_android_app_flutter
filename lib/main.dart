@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hostel_ease/screens/admin/admin_menu.dart';
-import 'package:hostel_ease/screens/admin/create_warden.dart';
 import 'package:hostel_ease/screens/common/choose_role.dart';
 import 'package:hostel_ease/firebase_options.dart';
 import 'package:hostel_ease/screens/student/student_menu.dart';
@@ -47,8 +46,6 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active &&
                 snapshot.hasData) {
-              print('entered');
-              print(FirebaseAuth.instance.currentUser!.email!);
               if (snapshot.data!.uid == "uxkzVEE1UfRshLIZuYQnuHLB7qR2") {
                 return const Adminmenu();
               } else if (FirebaseAuth.instance.currentUser!.email!
@@ -59,6 +56,10 @@ class MyApp extends StatelessWidget {
                 return const Studentmenu();
               } else if (snapshot.hasError) {
                 return Center(child: Text("${snapshot.error}"));
+              } else {
+                return const ChooseRole(
+                  isLogin: true,
+                );
               }
             }
             if (snapshot.connectionState == ConnectionState.waiting) {

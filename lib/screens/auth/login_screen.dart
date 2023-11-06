@@ -1,10 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostel_ease/resources/authmethods.dart';
 import 'package:hostel_ease/screens/admin/admin_menu.dart';
 import 'package:hostel_ease/screens/admin/create_warden.dart';
 import 'package:hostel_ease/screens/common/choose_role.dart';
+import 'package:hostel_ease/screens/student/student_menu.dart';
+import 'package:hostel_ease/screens/warden/warden_menu.dart';
 import 'package:hostel_ease/widgets/textfiled.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -24,8 +27,20 @@ class _LoginScreenState extends State<LoginScreen> {
     String res =
         await authmethods.login(email: email.text, password: password.text);
     if (res == "success") {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const Adminmenu()));
+      if (FirebaseAuth.instance.currentUser!.uid ==
+          "uxkzVEE1UfRshLIZuYQnuHLB7qR2") {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const Adminmenu()));
+      } else if (FirebaseAuth.instance.currentUser!.email!.contains('warden')) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const WardenMenu();
+        }));
+      } else if (FirebaseAuth.instance.currentUser!.email!
+          .contains('student')) {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const Studentmenu();
+        }));
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(res)));
     }
