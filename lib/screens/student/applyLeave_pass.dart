@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hostel_ease/resources/DBmethods.dart';
+import 'package:hostel_ease/screens/student/student_menu.dart';
 
 class ApplyLeave extends StatefulWidget {
   const ApplyLeave({super.key});
@@ -46,6 +47,14 @@ class _ApplyLeaveState extends State<ApplyLeave> {
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Fill all fields')));
       }
+    }
+
+    @override
+    void dispose() {
+      reason.dispose();
+      contact.dispose();
+      address.dispose();
+      super.dispose();
     }
 
     return Scaffold(
@@ -183,6 +192,10 @@ class _ApplyLeaveState extends State<ApplyLeave> {
             ElevatedButton(
               onPressed: () {
                 upload();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const Studentmenu()));
               },
               child: const Text('Apply Leave'),
             ),

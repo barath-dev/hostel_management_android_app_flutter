@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings, unused_element, non_constant_identifier_names
 
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hostel_ease/screens/admin/create_student_screen.dart';
 import 'package:hostel_ease/screens/admin/create_warden.dart';
+import 'package:hostel_ease/screens/warden/add_floor.dart';
 
 class ViewHostels extends StatefulWidget {
   const ViewHostels({super.key});
@@ -13,8 +16,63 @@ class ViewHostels extends StatefulWidget {
 }
 
 class _ViewHostelsState extends State<ViewHostels> {
-  _selectOption(
-      BuildContext context, String hostel, String HostelID, String hid) async {
+  TextEditingController floorController = TextEditingController();
+
+  addFloor(String floors, String hid) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: const Text("Add Floors"),
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter the number of floors',
+                ),
+                controller: floorController,
+              ),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Cancel"),
+                  ),
+                  GestureDetector(
+                    child: const Text("Add Floors"),
+                    onTap: () async {
+                      var list = [];
+                      for (int i = 1;
+                          i <= int.parse(floorController.text.toString());
+                          i++) {
+                        for (int j = 1; j <= 10; j++) {
+                          list.add(i.toString() + '0' + j.toString());
+                          debugPrint("in list");
+                        }
+                      }
+                      log("$list");
+                      log("crossed");
+                      await FirebaseFirestore.instance
+                          .collection('hostels')
+                          .doc(hid)
+                          .update({
+                        'numberOfFloors': (int.parse(floorController.text) +
+                                int.parse(floors))
+                            .toString(),
+                        'available rooms': FieldValue.arrayUnion(list)
+                      });
+                    },
+                  )
+                ],
+              )
+            ],
+          );
+        });
+  }
+
+  _selectOption(BuildContext context, String hostel, String HostelID,
+      String hid, String floors) async {
     return showDialog(
         context: context,
         builder: (context) {
@@ -42,6 +100,12 @@ class _ViewHostelsState extends State<ViewHostels> {
                               hid: hid)));
                 },
               ),
+              SimpleDialogOption(
+                  padding: const EdgeInsets.all(15),
+                  child: const Text('Add floors to the selected Hostel'),
+                  onPressed: () async {
+                    addFloor(floors, hid);
+                  }),
               SimpleDialogOption(
                   padding: const EdgeInsets.all(15),
                   child: const Text('View Students in the selected Hostel'),
@@ -80,6 +144,7 @@ class _ViewHostelsState extends State<ViewHostels> {
                             snapshot.data!.docs[index]['name'],
                             snapshot.data!.docs[index]['hostelId'],
                             snapshot.data!.docs[index]['hId'],
+                            snapshot.data!.docs[index]['numberOfFloors'],
                           );
                         },
                         child: Padding(
@@ -109,17 +174,13 @@ class _ViewHostelsState extends State<ViewHostels> {
                               ),
                               trailing: IconButton(
                                   onPressed: () {
-                                    // Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) => DeleteHostel(
-                                    //               hostelId: snapshot
-                                    //                   .data!.docs[index].id,
-                                    //             )));
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        const SnackBar(
-                                            content: Text(
-                                                'Delete Function needs to be implemented,Just a dummy button for now')));
+                                    FirebaseFirestore.instance
+                                        .collection('hostels')
+                                        .doc(snapshot.data!.docs[index].id)
+                                        .delete();
+                                    const SnackBar(
+                                        content: Text(
+                                            'Hostel Deleted Successfully'));
                                   },
                                   icon: const Icon(
                                     Icons.delete,

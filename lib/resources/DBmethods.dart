@@ -155,6 +155,8 @@ class DBmethods {
       FirebaseFirestore.instance.collection('leavePass').doc(lid).set({
         'reason': reason,
         'hid': hid,
+        'contact': contact,
+        'address': address,
         'uid': FirebaseAuth.instance.currentUser!.uid,
         'student email': FirebaseAuth.instance.currentUser!.email,
         'from date': Fromdate,
