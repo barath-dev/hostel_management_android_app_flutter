@@ -1,16 +1,18 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:hostel_ease/resources/DBmethods.dart';
 import 'package:hostel_ease/widgets/textfiled.dart';
 
 class CreateWarden extends StatefulWidget {
-  final String HostelId;
-  final String HostelName;
+  final String hostelId;
+  final String hostelName;
   final String hid;
 
   const CreateWarden(
       {super.key,
-      required this.HostelId,
-      required this.HostelName,
+      required this.hostelId,
+      required this.hostelName,
       required this.hid});
 
   @override
@@ -29,8 +31,8 @@ class _CreateWardenState extends State<CreateWarden> {
         age.text.isNotEmpty &&
         password.text.isNotEmpty) {
       String result = await DBmethods().createWarden(
-          WardensName: wardenName.text,
-          WardensEmail: wardenMail.text,
+          wardensName: wardenName.text,
+          wardensEmail: wardenMail.text,
           age: age.text,
           password: password.text,
           hId: widget.hid);
@@ -67,7 +69,7 @@ class _CreateWardenState extends State<CreateWarden> {
                 height: 85,
               ),
               Text(
-                'Create Warden account \n Hostel Name:${widget.HostelName} \n Hostel ID:${widget.HostelId}',
+                'Create Warden account \n Hostel Name:${widget.hostelName} \n Hostel ID:${widget.hostelId}',
                 // ignore: prefer_const_constructors
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),

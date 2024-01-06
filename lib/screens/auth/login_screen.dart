@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hostel_ease/resources/authmethods.dart';
 import 'package:hostel_ease/screens/admin/admin_menu.dart';
-import 'package:hostel_ease/screens/admin/create_warden.dart';
 import 'package:hostel_ease/screens/common/choose_role.dart';
 import 'package:hostel_ease/screens/student/student_menu.dart';
 import 'package:hostel_ease/screens/warden/warden_menu.dart';
@@ -28,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
         await authmethods.login(email: email.text, password: password.text);
     if (res == "success") {
       if (FirebaseAuth.instance.currentUser!.uid ==
-          "uxkzVEE1UfRshLIZuYQnuHLB7qR2") {
+          "CLntX2QHrEXMOmTBR6jvAC1PgYc2") {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const Adminmenu()));
       } else if (FirebaseAuth.instance.currentUser!.email!.contains('warden')) {

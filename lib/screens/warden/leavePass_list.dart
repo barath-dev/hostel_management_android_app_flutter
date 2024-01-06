@@ -16,15 +16,12 @@ class _LeavePassListState extends State<LeavePassList> {
   @override
   void initState() {
     getWarden();
-    print(wardenId);
-    print(wardenId + FirebaseAuth.instance.currentUser!.uid.toString());
     super.initState();
   }
 
   String wardenId = '';
 
   void getWarden() async {
-    String uid = FirebaseAuth.instance.currentUser!.uid;
     wardenId = await DBmethods().getWardenHid();
   }
 
@@ -38,10 +35,10 @@ class _LeavePassListState extends State<LeavePassList> {
           stream: FirebaseFirestore.instance
               .collection('leavePass')
               .where('status', isEqualTo: 'pending')
-              // .where('hid', isEqualTo: wardenId)
+              .where('warden email',
+                  isEqualTo: FirebaseAuth.instance.currentUser!.email)
               .snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            print(FirebaseAuth.instance.currentUser!.uid);
             if (snapshot.hasData) {
               return ListView.builder(
                   itemCount: snapshot.data!.docs.length,

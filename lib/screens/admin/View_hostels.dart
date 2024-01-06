@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hostel_ease/screens/admin/create_student_screen.dart';
 import 'package:hostel_ease/screens/admin/create_warden.dart';
-import 'package:hostel_ease/screens/warden/add_floor.dart';
 
 class ViewHostels extends StatefulWidget {
   const ViewHostels({super.key});
@@ -95,8 +94,8 @@ class _ViewHostelsState extends State<ViewHostels> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => CreateWarden(
-                              HostelId: HostelID,
-                              HostelName: hostel,
+                              hostelId: HostelID,
+                              hostelName: hostel,
                               hid: hid)));
                 },
               ),

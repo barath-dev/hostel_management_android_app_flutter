@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ViewStudents extends StatefulWidget {
   final String hid;
-  const ViewStudents({super.key,required this.hid});
+  const ViewStudents({super.key, required this.hid});
 
   @override
   State<ViewStudents> createState() => _ViewStudentsState();
@@ -19,7 +20,8 @@ class _ViewStudentsState extends State<ViewStudents> {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('hostels')
-            .where('hId', isEqualTo: 'hid')
+            .where('warden email',
+                isEqualTo: FirebaseAuth.instance.currentUser!.email)
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {

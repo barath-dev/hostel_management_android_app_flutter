@@ -66,31 +66,22 @@ class DBmethods {
   }
 
   Future<String> createWarden(
-      {required String WardensName,
-      required String WardensEmail,
+      {required String wardensName,
+      required String wardensEmail,
       required String age,
       required String password,
       required String hId}) async {
     try {
       UserCredential cred = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-              email: WardensEmail, password: password);
+              email: wardensEmail, password: password);
       String uid = cred.user!.uid;
 
-      FirebaseFirestore.instance
-          .collection('hostels')
-          .doc(hId)
-          .collection('wardens')
-          .doc(uid)
-          .set({
-        'name': WardensName,
-        'email': WardensEmail,
-        'age': age,
-        'hid': hId,
-      });
-      FirebaseFirestore.instance.collection('hostels').doc(hId).update({
-        'warden count': FieldValue.increment(1),
-        'warden name': FieldValue.arrayUnion([WardensName]),
+      FirebaseFirestore.instance.collection('hostels').doc(hId).set({
+        'warden name': wardensName,
+        'warden email': wardensEmail,
+        'warden age': age,
+        'wid': uid
       });
     } catch (e) {
       return e.toString();
