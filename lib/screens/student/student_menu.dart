@@ -2,14 +2,12 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hostel_ease/screens/admin/create_hostel.dart';
 import 'package:hostel_ease/screens/common/choose_role.dart';
 import 'package:hostel_ease/screens/student/applyLeave_pass.dart';
 import 'package:hostel_ease/screens/student/book_Room.dart';
 import 'package:hostel_ease/screens/student/my_queries.dart';
 import 'package:hostel_ease/screens/student/query_screen.dart';
 import 'package:hostel_ease/screens/student/viewLeacePass.dart';
-import 'package:hostel_ease/screens/warden/query_screen.dart';
 
 class Studentmenu extends StatefulWidget {
   const Studentmenu({super.key});

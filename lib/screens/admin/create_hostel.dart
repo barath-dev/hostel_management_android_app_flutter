@@ -22,6 +22,7 @@ class CreateHostel extends StatelessWidget {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(result),
         ));
+        Navigator.pop(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Please fill all the fields'),
@@ -30,58 +31,59 @@ class CreateHostel extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hostel Ease'),
-      ),
+        appBar: AppBar(
+          title: const Text('Hostel Ease'),
+        ),
         body: Column(
-      children: [
-        const Spacer(),
-        const Text(
-          'Create Hostel',
-          style: TextStyle(fontSize: 54, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: TextInput(hint: 'Hostel Name', controller: hostelName),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: TextInput(
-              hint: 'Number of Floors',
-              controller: numberofFloors,
-              keybordType: TextInputType.number),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: TextInput(
-            hint: 'Hostel ID',
-            controller: hostelID,
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        ElevatedButton(
-            onPressed: () {
-              create();
-            },
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blue[900])),
-            child: const Text(
+          children: [
+            const Spacer(),
+            const Text(
               'Create Hostel',
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            )),
-        const Spacer()
-      ],
-    ));
+              style: TextStyle(fontSize: 54, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextInput(hint: 'Hostel Name', controller: hostelName),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextInput(
+                  hint: 'Number of Floors',
+                  controller: numberofFloors,
+                  keybordType: TextInputType.number),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextInput(
+                hint: 'Hostel ID',
+                controller: hostelID,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  create();
+                },
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.blue[900])),
+                child: const Text(
+                  'Create Hostel',
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                )),
+            const Spacer()
+          ],
+        ));
   }
 }

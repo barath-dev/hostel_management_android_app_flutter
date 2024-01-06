@@ -26,8 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String res =
         await authmethods.login(email: email.text, password: password.text);
     if (res == "success") {
-      if (FirebaseAuth.instance.currentUser!.uid ==
-          "CLntX2QHrEXMOmTBR6jvAC1PgYc2") {
+      if (FirebaseAuth.instance.currentUser!.email == "admin@hostelease.com") {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const Adminmenu()));
       } else if (FirebaseAuth.instance.currentUser!.email!.contains('warden')) {

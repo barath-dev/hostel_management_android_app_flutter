@@ -4,7 +4,6 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hostel_ease/screens/admin/create_student_screen.dart';
 import 'package:hostel_ease/screens/admin/create_warden.dart';
 
 class ViewHostels extends StatefulWidget {
@@ -165,9 +164,6 @@ class _ViewHostelsState extends State<ViewHostels> {
                                     snapshot.data!.docs[index]['hostelId'] +
                                     "\n\n Student count: " +
                                     snapshot.data!.docs[index]['student count']
-                                        .toString() +
-                                    "\n\n Warden count: " +
-                                    snapshot.data!.docs[index]['warden count']
                                         .toString(),
                                 style: const TextStyle(color: Colors.white),
                               ),

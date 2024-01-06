@@ -7,7 +7,6 @@ import 'package:hostel_ease/screens/common/choose_role.dart';
 import 'package:hostel_ease/screens/warden/leavePass_list.dart';
 import 'package:hostel_ease/screens/warden/leave_pass_history.dart';
 import 'package:hostel_ease/screens/warden/query_list.dart';
-import 'package:hostel_ease/screens/warden/query_screen.dart';
 
 class WardenMenu extends StatefulWidget {
   const WardenMenu({super.key});

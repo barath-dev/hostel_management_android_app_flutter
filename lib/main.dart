@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active &&
                 snapshot.hasData) {
-              if (snapshot.data!.uid == "CLntX2QHrEXMOmTBR6jvAC1PgYc2") {
+              if (snapshot.data!.email == "admin@hostelease.com") {
                 return const Adminmenu();
               } else if (FirebaseAuth.instance.currentUser!.email!
                   .contains('warden')) {

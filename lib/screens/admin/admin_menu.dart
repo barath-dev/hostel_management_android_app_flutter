@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:hostel_ease/screens/admin/View_hostels.dart';
 import 'package:hostel_ease/screens/admin/create_hostel.dart';
 import 'package:hostel_ease/screens/admin/create_student_screen.dart';
-import 'package:hostel_ease/screens/admin/create_warden.dart';
 import 'package:hostel_ease/screens/common/choose_role.dart';
 
 class Adminmenu extends StatefulWidget {

@@ -13,7 +13,7 @@ class DBmethods {
     var list = [];
     for (int i = 1; i <= int.parse(numberOfFloors); i++) {
       for (int j = 1; j <= 10; j++) {
-        list.add(i.toString() + '0' + j.toString());
+        list.add('${i}0$j');
       }
     }
     try {
@@ -24,7 +24,6 @@ class DBmethods {
         'hostelId': hostelId,
         'hId': hId,
         'student count': 0,
-        'warden count': 0,
         'student List': [],
         'available rooms': list,
         'query list': [],
@@ -72,12 +71,15 @@ class DBmethods {
       required String password,
       required String hId}) async {
     try {
+      if (!wardensEmail.contains("warden")) {
+        return "Email should contain @warden";
+      }
       UserCredential cred = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: wardensEmail, password: password);
       String uid = cred.user!.uid;
 
-      FirebaseFirestore.instance.collection('hostels').doc(hId).set({
+      FirebaseFirestore.instance.collection('hostels').doc(hId).update({
         'warden name': wardensName,
         'warden email': wardensEmail,
         'warden age': age,
